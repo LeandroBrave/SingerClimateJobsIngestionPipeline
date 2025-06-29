@@ -9,6 +9,9 @@ Construir um pipeline completo de ingestão e transformação de dados públicos
 - Transformações com dbt no Snowflake
 - Análise do impacto do clima sobre os índices de empregabilidade e desemprego
 
+Este repo, contudo, conterá apenas o projeto singer-python.
+O repo DBT para transformação um repo para exibir as analises serão referenciados aqui em breve.
+
 ---
 
 ## 🔍 Fontes de dados utilizadas
@@ -47,12 +50,12 @@ Vamos consolidar e analisar dados climáticos com dados de emprego para descobri
 
 - Ingestão: Meltano + Singer taps (open-meteo e caged) → target S3
 - Armazenamento: dados raw no S3 (parquet ou JSONL)
-- Transformação: dbt no Snowflake
+- Transformação: dbt no Snowflake **(em breve link do repo do dbt)**
 - Modelagem:
   - `stg_weather` → unifica dados forecast e histórico
   - `stg_caged` → unifica movimentação e estoque
   - `fct_emprego_clima` → integra clima e emprego por cidade/mês
-- Visualização/Análise: dashboards ou notebooks
+- Visualização/Análise: dashboards ou notebooks **(em breve link do repo de analytics)**
 
 ---
 
