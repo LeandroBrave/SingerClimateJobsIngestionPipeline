@@ -1,16 +1,20 @@
 # 🚀 SingerClimateJobsPipeline
 Pipeline completo de ingestão e transformação usando Singer, Python, Meltano e dbt
 
+# 📝 Planejamento
+Parte 1 - Ingestão batch
+Este repo é a parte 1 de uma série composta por 4 repositórios.
+Em breve a disponibilização da parte 2, um repo de ingestão de big data com Pyspark
+Em seguida a disponibilização da parte 3, um repo de transformação com DBT.
+Por fim, a disponibilização da parte 4, algo simples para expor a parte de analytics.
+
 ## 📌 Objetivo
 
 Construir um pipeline completo de ingestão e transformação de dados públicos, aplicando boas práticas de engenharia de dados:
-- Ingestão de múltiplas fontes (APIs públicas)
+- Ingestão de múltiplas fontes (APIs públicas e bancos de dados)
 - Armazenamento raw no S3
 - Transformações com dbt no Snowflake
 - Análise do impacto do clima sobre os índices de empregabilidade e desemprego
-
-Este repo, contudo, conterá apenas o projeto singer-python.
-O repo DBT para transformação um repo para exibir as analises serão referenciados aqui em breve.
 
 ---
 
@@ -38,6 +42,17 @@ Campos principais:
 
 ---
 
+### 🗄️ Banco de Dados
+Dados já coletados e armazenados em um banco postgres
+
+- O teor do dado ainda será definido
+
+Campos e tabelas principais:
+
+    A serem definidos.
+
+---
+
 ## 🧠 Pergunta de negócio
 
 > O clima influencia o índice de empregabilidade ou desemprego em determinadas regiões ou setores?
@@ -48,7 +63,8 @@ Vamos consolidar e analisar dados climáticos com dados de emprego para descobri
 
 ## 🧰 Arquitetura do projeto
 
-- Ingestão: Meltano + Singer taps (open-meteo e caged) → target S3
+- Ingestão 1: Meltano + Singer taps (open-meteo, caged e postgres) → target S3
+- Ingestão 2: Pyspark (detalhes ainda a serem definidos)
 - Armazenamento: dados raw no S3 (parquet ou JSONL)
 - Transformação: dbt no Snowflake **(em breve link do repo do dbt)**
 - Modelagem:
@@ -62,11 +78,12 @@ Vamos consolidar e analisar dados climáticos com dados de emprego para descobri
 ## 🧪 Tecnologias
 
 - Python
+- Spark
 - Singer + Meltano (ETL/ELT)
 - AWS S3 (data lake raw zone)
 - Snowflake (data warehouse)
 - dbt (transformação e modelagem)
-- Opcional: Streamlit ou Metabase para análise final
+- Sujeito a alterações: Streamlit ou Metabase para análise final
   
 ---
 
