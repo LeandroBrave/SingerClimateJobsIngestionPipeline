@@ -1,17 +1,26 @@
 # 🚀 SingerClimateJobsPipeline
-Pipeline completo de ingestão e transformação usando Singer, Python, Meltano e dbt
+Pipeline completo de ingestão batch com Singer, Python e Meltano.  
+Este repositório faz parte de uma **série de 4 repositórios separados** que, juntos, compõem um pipeline completo de engenharia de dados.
 
-# 📝 Planejamento
-Parte 1 - Ingestão batch
-Este repo é a parte 1 de uma série composta por 4 repositórios.
-Em breve a disponibilização da parte 2, um repo de ingestão de big data com Pyspark
-Em seguida a disponibilização da parte 3, um repo de transformação com DBT.
-Por fim, a disponibilização da parte 4, algo simples para expor a parte de analytics.
+---
+
+## 📝 Planejamento
+
+**Estrutura da série de repositórios:**
+
+- ✅ **Parte 1 (este repositório)**: Ingestão batch com Singer + Meltano
+- 🛠 **Parte 2 (em desenvolvimento, outro repositório)**: Ingestão big data com PySpark
+- 📦 **Parte 3 (a ser entregue em outro repositório)**: Transformação e modelagem com dbt
+- 📊 **Parte 4 (a ser entregue em outro repositório)**: Analytics e visualização (ex: dashboards ou notebooks)
+
+Cada etapa ficará em um repositório separado para manter a arquitetura limpa e modular.
+
+---
 
 ## 📌 Objetivo
 
 Construir um pipeline completo de ingestão e transformação de dados públicos, aplicando boas práticas de engenharia de dados:
-- Ingestão de múltiplas fontes (APIs públicas e bancos de dados)
+- Ingestão de múltiplas fontes (APIs públicas e banco de dados)
 - Armazenamento raw no S3
 - Transformações com dbt no Snowflake
 - Análise do impacto do clima sobre os índices de empregabilidade e desemprego
@@ -42,14 +51,9 @@ Campos principais:
 
 ---
 
-### 🗄️ Banco de Dados
-Dados já coletados e armazenados em um banco postgres
-
-- O teor do dado ainda será definido
-
-Campos e tabelas principais:
-
-    A serem definidos.
+### 🗄️ Banco de Dados (PostgreSQL)
+Ingestão via tap própria lendo tabelas de um banco PostgreSQL.
+- O teor e schema dos dados ainda serão definidos.
 
 ---
 
@@ -57,35 +61,34 @@ Campos e tabelas principais:
 
 > O clima influencia o índice de empregabilidade ou desemprego em determinadas regiões ou setores?
 
-Vamos consolidar e analisar dados climáticos com dados de emprego para descobrir se há relação.
+Vamos consolidar e analisar dados climáticos junto com dados de emprego para investigar se existe correlação.
 
 ---
 
-## 🧰 Arquitetura do projeto
+## 🧰 Arquitetura geral
 
-- Ingestão 1: Meltano + Singer taps (open-meteo, caged e postgres) → target S3
-- Ingestão 2: Pyspark (detalhes ainda a serem definidos)
-- Armazenamento: dados raw no S3 (parquet ou JSONL)
-- Transformação: dbt no Snowflake **(em breve link do repo do dbt)**
-- Modelagem:
-  - `stg_weather` → unifica dados forecast e histórico
-  - `stg_caged` → unifica movimentação e estoque
-  - `fct_emprego_clima` → integra clima e emprego por cidade/mês
-- Visualização/Análise: dashboards ou notebooks **(em breve link do repo de analytics)**
+- **Ingestão 1 (este repositório)**: Meltano + Singer taps (open-meteo, caged e postgres) → target S3
+- **Ingestão 2 (outro repositório, em desenvolvimento)**: PySpark para extrações massivas e paralelas
+- **Armazenamento**: dados raw no S3 (parquet ou JSONL)
+- **Transformação (outro repositório, a ser entregue)**: dbt no Snowflake
+- **Modelagem (outro repositório, a ser entregue)**:
+  - `stg_weather`: unifica dados forecast e histórico
+  - `stg_caged`: unifica movimentação e estoque
+  - `fct_emprego_clima`: integra clima e emprego por cidade/mês
+- **Visualização/Analytics (outro repositório, a ser entregue)**: dashboards ou notebooks
 
 ---
 
 ## 🧪 Tecnologias
 
 - Python
-- Spark
 - Singer + Meltano (ETL/ELT)
+- Spark (ingestão massiva, parte 2)
 - AWS S3 (data lake raw zone)
 - Snowflake (data warehouse)
 - dbt (transformação e modelagem)
-- Sujeito a alterações: Streamlit ou Metabase para análise final
-  
----
+- Streamlit ou Metabase (visualização final, a definir)
 
+---
 
 > Projeto de portfólio para demonstrar habilidades em engenharia de dados: ingestão, transformação, modelagem e análise integrada.
