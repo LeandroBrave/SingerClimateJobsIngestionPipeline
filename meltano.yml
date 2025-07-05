@@ -1,0 +1,22 @@
+version: 1
+default_environment: dev
+project_id: 174d468a-fbb3-44c2-821d-4b88bdb40c0c
+environments:
+- name: dev
+- name: staging
+- name: prod
+plugins:
+  extractors:
+    - name: tap-openmeteo
+      namespace: tap_openmeteo
+      pip_url: -e plugins/taps/tap_openmeteo/
+      capabilities:
+        - state
+        - catalog
+        - discover
+        - about
+        - stream-maps
+      settings:
+        - name: config
+          value: $CONFIG_B64
+      catalog: plugins/taps/tap_openmeteo/tap_openmeteo/catalog/openmeteo_catalog.json

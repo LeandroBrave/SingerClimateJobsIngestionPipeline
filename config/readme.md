@@ -1,0 +1,1 @@
+Pasta para inputs de teste local e mocagem de dados

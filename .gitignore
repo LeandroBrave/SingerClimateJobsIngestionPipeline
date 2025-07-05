@@ -1,0 +1,23 @@
+# Ambiente virtual
+venv/
+
+# Configuração de ambiente (se sensível)
+.env
+
+# Python cache
+__pycache__/
+*.py[cod]
+
+# Logs e outputs
+output/*
+!output/.gitkeep
+*.log
+
+# Meltano internal runtime and state files
+.meltano/
+tap_openmeteo.egg-info/
+
+# VSCode ou outros editores (se usar)
+.vscode/
+.idea/
+*.swp

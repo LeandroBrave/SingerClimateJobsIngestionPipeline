@@ -1,0 +1,23 @@
+{
+  "streams": [
+    {
+      "stream": "forecast",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "time": {"type": "string"},
+          "temperature_2m": {"type": "number"},
+          "latitude": {"type": "number"},
+          "longitude": {"type": "number"},
+          "generationtime_ms": {"type": "number"},
+          "utc_offset_seconds": {"type": "integer"},
+          "timezone": {"type": "string"},
+          "timezone_abbreviation": {"type": "string"},
+          "elevation": {"type": "number"},
+          "hourly_units": {"type": "object"}
+        }
+      },
+      "key_properties": ["time"]
+    }
+  ]
+}
