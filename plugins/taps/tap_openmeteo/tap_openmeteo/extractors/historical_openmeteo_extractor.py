@@ -4,7 +4,7 @@ from .base_openmeteo_extractor import BaseOpenMeteoExtractor
 
 class HistoricalOpenMeteoExtractor(BaseOpenMeteoExtractor):
     def __init__(self, config):
-        super().__init__("v1/historical", config)
+        super().__init__("https://api.open-meteo.com","v1/historical", config)
 
     def extract(self):
         return self.client.get()
