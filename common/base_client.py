@@ -3,7 +3,7 @@ from common.requests_client import RequestsClient
 
 #Abstração criada para garantir que o client será chamado corretamente
 
-class BaseOpenMeteoExtractor(ABC):
+class BaseClient(ABC):
     def __init__(self, base_url, endpoint, config):
         """
         base_url: string, ex: https://api.open-meteo.com

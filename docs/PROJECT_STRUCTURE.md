@@ -12,7 +12,8 @@ SingerClimateJobsIngestionPipeline/
 ├── .meltano/                            # [1]
 ├── common/                              # [2]
 │   ├── singer_emitter.py
-│   └── requests_client.py
+│   ├── requests_client.py
+│   └── base_client.py
 ├── config/                              # [3]
 │   └── tap_openmeteo/
 │       └── gerar_base64_teste.py
@@ -27,7 +28,6 @@ SingerClimateJobsIngestionPipeline/
 │           │   │   └── openmeteo_singer.py
 │           │   ├── extractors/          # [5.1.1.2]
 │           │   │   ├── openmeteo_extractor.py
-│           │   │   ├── base_openmeteo_extractor.py
 │           │   │   ├── forecast_openmeteo_extractor.py
 │           │   │   └── historical_openmeteo_extractor.py
 │           │   ├── catalog/             # [5.1.1.3]
@@ -102,8 +102,6 @@ Runner da tap: transforma dados da extração em registros Singer.
 [5.1.1.2] extractors/
 
 Dividimos em arquivos separados para diferentes tipos de extração:
-
-    base_openmeteo_extractor.py → base comum
 
     forecast_openmeteo_extractor.py → previsão
 
