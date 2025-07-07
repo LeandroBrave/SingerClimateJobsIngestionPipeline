@@ -138,3 +138,16 @@ Essa organização ajuda a manter claro:
     Facilidade para testes e evolução futura.
 
     Em caso de dúvidas, veja o WALKTHROUGH.md para um tour guiado pelos scripts e fluxo da ingestão.
+
+📌 ## Voltar / Navegar
+
+- 🏗️ [Estrutura do projeto (Este Documento)](#📂-estrutura-do-projeto-singerclimatejobsingestionpipeline)  
+  Explicação detalhada da organização de pastas, módulos e arquivos.
+
+- 🔍 [Walkthrough (WALKTHROUGH.md)](WALKTHROUGH.md)  
+  Um tour guiado pelo código, descrevendo a lógica interna e como tudo se conecta.
+
+- 🚀 [Deploy e execução (DEPLOY.md)](DEPLOY.md)  
+  Como preparar o ambiente, instalar dependências e executar localmente.
+
+- 🏠 [Voltar ao README principal](../README.md)
