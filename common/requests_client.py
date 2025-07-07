@@ -7,6 +7,9 @@ class RequestsClient:
 
     def __init__(self, base_url, endpoint, params):
         """
+        Classe genérica que faz requisições http.
+        Pode ser usada em qualquer tap.
+        Exemplo de parâmetros: 
         base_url: string, ex: https://api.open-meteo.com
         endpoint: string, ex.: 'v1/forecast'
         params: dict com os query parameters

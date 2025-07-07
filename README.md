@@ -97,11 +97,11 @@ Vamos consolidar e analisar dados climáticos junto com dados de emprego para in
 
 ## 📚 Documentação Técnica
 
-- 🏗️ [Estrutura do projeto (PROJECT_STRUCTURE.md)](docs/PROJECT_STRUCTURE.md)  
-  Explicação detalhada da organização de pastas, módulos e arquivos.
-
 - 🔍 [Walkthrough (WALKTHROUGH.md)](docs/WALKTHROUGH.md)  
   Um tour guiado pelo código, descrevendo a lógica interna e como tudo se conecta.
+
+- 🏗️ [Estrutura do projeto (PROJECT_STRUCTURE.md)](docs/PROJECT_STRUCTURE.md)  
+  Explicação detalhada da organização de pastas, módulos e arquivos.
 
 - 🚀 [Deploy e execução (DEPLOY.md)](docs/DEPLOY.md)  
   Como preparar o ambiente, instalar dependências e executar localmente.
