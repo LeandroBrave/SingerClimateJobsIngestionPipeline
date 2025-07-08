@@ -18,15 +18,26 @@ def do_about():
         "commands": [
             {
                 "name": "run_tap",
-                "description": "Executa a tap completa, lendo do catalog e emitindo dados no formato Singer."
+                "description": "Executa a tap completa, lendo do catalog e emitindo dados no formato Singer.",
+                "exemplo":{
+                    "Rodar apenas a tap": "meltano invoke nome_da_tap --config '$CONFIG_B64' > output/nome_do_arquivo_de_saida.log",
+                    "Rodar a tap e o target": "meltano invoke nome_da_tap --config ''$CONFIG_B64' nome_do_target"
+                }
+                    
             },
             {
                 "name": "do_discover",
-                "description": "Exibe no stdout o catalog JSON disponível, útil para descobrir streams e schemas."
+                "description": "Exibe no stdout o catalog JSON disponível, útil para descobrir streams e schemas.",
+                "exemplo":{
+                    "Comando":"meltano invoke tap-openmeteo --config '' --discover"
+                }
             },
             {
                 "name": "do_test_request",
-                "description": "Executa somente a request na API e imprime o resultado bruto, sem transformar em registros Singer."
+                "description": "Executa somente a request na API e imprime o resultado bruto, sem transformar em registros Singer.",
+                "exemplo":{
+                    "Comando":"meltano invoke tap-openmeteo --config '$CONFIG_B64' --test-request"
+                }
             }
         ]
     }
