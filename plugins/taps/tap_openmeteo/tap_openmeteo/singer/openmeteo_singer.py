@@ -27,6 +27,7 @@ class OpenMeteoSingerRunner:
         # 1. Extrai payload
         data = self.extractor.extract()
         logging.info(data)
+        
         # 2. Extrai as listas com os dados do clima
         times = data["hourly"]["time"]
         temps = data["hourly"]["temperature_2m"]
