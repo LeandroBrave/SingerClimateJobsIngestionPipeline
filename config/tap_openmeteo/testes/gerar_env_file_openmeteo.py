@@ -41,25 +41,35 @@ def escolherStream(tipo):
                 "params": {
                     "latitude": -23.55,
                     "longitude": -46.63,
-                    "hourly": "temperature_2m"
+                    "hourly": [
+                        "temperature_2m",
+                        "precipitation",
+                        "windspeed_10m",
+                        "cloudcover"
+                    ]
                 }
             }
     elif tipo == 'archive':
         config = {
-            "type": "archive",
+                "type": "archive",
                 "params": {
                     "latitude": -23.55,
                     "longitude": -46.63,
-                    "start_date": "2024-07-01",
-                    "end_date": "2024-07-05",
-                    "hourly": "temperature_2m,precipitation"
+                    "start_date": "2023-07-01",
+                    "end_date": "2025-07-01",
+                    "hourly": [
+                        "temperature_2m",
+                        "precipitation",
+                        "windspeed_10m",
+                        "cloudcover"
+                        ]
+                    }
                 }
-            }
     return config
 
 
 # Converte para string JSON
-config_str = json.dumps(escolherStream('archive')) #Mude aqui entre historical ou forecast, 
+config_str = json.dumps(escolherStream('archive')) #Mude aqui entre archive ou forecast, 
                                                       #para produzir diferentes stups de parametrização
 
 # Codifica em base64

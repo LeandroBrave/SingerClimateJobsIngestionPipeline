@@ -18,21 +18,18 @@ class OpenMeteoSingerRunner:
             return json.load(f)
 
     def run(self):
-        """
-        Emite o SCHEMA e os RECORDS.
-        :param stream_name: nome do stream (ex.: "forecast").
-        :param records: lista de dicts extraídos.
-        """
-    
         # 1. Extrai payload
         data = self.extractor.extract()
         logging.info(data)
         
-        # 2. Extrai as listas com os dados do clima
-        times = data["hourly"]["time"]
-        temps = data["hourly"]["temperature_2m"]
+        # 2. Extrai todas as listas do bloco "hourly"
+        hourly_data = data["hourly"]
+        times = hourly_data["time"]
 
-        # 3. Extrai os metadados 
+        # Descobre dinamicamente todas as variáveis além de "time"
+        variables = [k for k in hourly_data.keys() if k != "time"]
+
+        # 3. Extrai os metadados (fica igual)
         metadata = {
             "latitude": data["latitude"],
             "longitude": data["longitude"],
@@ -43,17 +40,20 @@ class OpenMeteoSingerRunner:
             "elevation": data["elevation"],
             "hourly_units": data["hourly_units"]
         }
-        
-        # 4. Constrói lista de records
+
+        # 4. Constrói lista de records dinamicamente
         records = []
-        for time, temp in zip(times, temps):
+        for idx, time in enumerate(times):
             record = {
                 "time": time,
-                "temperature_2m": temp,
-                **metadata   # adiciona todos os metadados
+                **metadata
             }
+            for var in variables:
+                # Pega o valor correspondente pelo índice
+                value = hourly_data[var][idx]
+                record[var] = value
             records.append(record)
-        
+
         # 5. Extrai schema e key_properties do catalog
         stream_info = next(s for s in self.catalog["streams"] if s["stream"] == self.stream_name)
         schema = stream_info["schema"]
