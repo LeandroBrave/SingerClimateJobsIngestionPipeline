@@ -7,15 +7,23 @@ environments:
 - name: prod
 plugins:
   extractors:
-    - name: tap-openmeteo
-      namespace: tap_openmeteo
-      pip_url: -e plugins/taps/tap_openmeteo/
-      capabilities:
-        - state
-        - discover
-        - about
-        - stream-maps
-      settings:
-        - name: config
-          value: $CONFIG_B64
-      catalog: plugins/taps/tap_openmeteo/tap_openmeteo/catalog/openmeteo_catalog.json
+  - name: tap-openmeteo
+    namespace: tap_openmeteo
+    pip_url: -e plugins/taps/tap_openmeteo/
+    capabilities:
+    - state
+    - discover
+    - about
+    - stream-maps
+    settings:
+    - name: config
+      value: $CONFIG_B64
+    catalog: 
+      plugins/taps/tap_openmeteo/tap_openmeteo/catalog/openmeteo_catalog.json
+  loaders:
+  - name: target-jsonl
+    variant: andyh1203
+    pip_url: target-jsonl
+    config:
+      destination_path: output
+      do_timestamp_file: true

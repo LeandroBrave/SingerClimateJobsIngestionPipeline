@@ -60,6 +60,7 @@ def run_tap(extractor_instance, catalog, stream_name):
     tap_runner = openmeteo_singer.OpenMeteoSingerRunner(extractor_instance, catalog, stream_name)
     tap_runner.run()
 
+
 @click.command()
 @click.option('--config', required=True, help='Config JSON em base64')
 @click.option('--discover', is_flag=True, help='Imprime o catalog JSON no stdout e sai')
