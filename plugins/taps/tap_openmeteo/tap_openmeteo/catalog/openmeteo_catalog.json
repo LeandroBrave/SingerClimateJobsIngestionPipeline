@@ -7,6 +7,31 @@
         "properties": {
           "time": {"type": "string"},
           "temperature_2m": {"type": "number"},
+          "precipitation": {"type": "number"},
+          "windspeed_10m": {"type": "number"},
+          "cloudcover": {"type": "number"},
+          "latitude": {"type": "number"},
+          "longitude": {"type": "number"},
+          "generationtime_ms": {"type": "number"},
+          "utc_offset_seconds": {"type": "integer"},
+          "timezone": {"type": "string"},
+          "timezone_abbreviation": {"type": "string"},
+          "elevation": {"type": "number"},
+          "hourly_units": {"type": "object"}
+        }
+      },
+      "key_properties": ["time"]
+    },
+    {
+      "stream": "archive",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "time": {"type": "string"},
+          "temperature_2m": {"type": "number"},
+          "precipitation": {"type": "number"},
+          "windspeed_10m": {"type": "number"},
+          "cloudcover": {"type": "number"},
           "latitude": {"type": "number"},
           "longitude": {"type": "number"},
           "generationtime_ms": {"type": "number"},

@@ -1,5 +1,5 @@
 from tap_openmeteo.extractors.forecast_openmeteo_extractor import ForecastOpenMeteoExtractor
-from tap_openmeteo.extractors.historical_openmeteo_extractor import HistoricalOpenMeteoExtractor
+from tap_openmeteo.extractors.archive_openmeteo_extractor import ArchiveOpenMeteoExtractor
 
 class OpenMeteoExtractor:
     """
@@ -15,7 +15,7 @@ class OpenMeteoExtractor:
         extractor_type = config.get("type")
         if extractor_type == "forecast":
             return ForecastOpenMeteoExtractor(config), "forecast"
-        elif extractor_type == "historical":
-            return HistoricalOpenMeteoExtractor(config), "historical"
+        elif extractor_type == "archive":
+            return ArchiveOpenMeteoExtractor(config), "archive"
         else:
             raise ValueError(f"Tipo de extractor desconhecido: {extractor_type}")

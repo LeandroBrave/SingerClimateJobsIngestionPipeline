@@ -34,17 +34,43 @@ def salvar_env(base64_str, env_path):
             f.write(linha)
 
 # Nosso config hardcoded
-config = {
-  "type": "forecast",
-  "params": {
-    "latitude": -23.55,
-    "longitude": -46.63,
-    "hourly": "temperature_2m"
-  }
-}
+def escolherStream(tipo):
+    if tipo == 'forecast':
+        config = {
+                "type": "forecast",
+                "params": {
+                    "latitude": -23.55,
+                    "longitude": -46.63,
+                    "hourly": [
+                        "temperature_2m",
+                        "precipitation",
+                        "windspeed_10m",
+                        "cloudcover"
+                    ]
+                }
+            }
+    elif tipo == 'archive':
+        config = {
+                "type": "archive",
+                "params": {
+                    "latitude": -23.55,
+                    "longitude": -46.63,
+                    "start_date": "2025-06-15",
+                    "end_date": "2025-07-01",
+                    "hourly": [
+                        "temperature_2m",
+                        "precipitation",
+                        "windspeed_10m",
+                        "cloudcover"
+                        ]
+                    }
+                }
+    return config
+
 
 # Converte para string JSON
-config_str = json.dumps(config)
+config_str = json.dumps(escolherStream('archive')) #Mude aqui entre archive ou forecast, 
+                                                      #para produzir diferentes stups de parametrização
 
 # Codifica em base64
 config_base64 = base64.b64encode(config_str.encode()).decode()
