@@ -29,7 +29,7 @@ SingerClimateJobsIngestionPipeline/
 │           │   ├── extractors/          # [5.1.1.2]
 │           │   │   ├── openmeteo_extractor.py
 │           │   │   ├── forecast_openmeteo_extractor.py
-│           │   │   └── historical_openmeteo_extractor.py
+│           │   │   └── archive_openmeteo_extractor.py
 │           │   ├── catalog/             # [5.1.1.3]
 │           │   │   └── openmeteo_catalog.json
 │           └── setup.py
