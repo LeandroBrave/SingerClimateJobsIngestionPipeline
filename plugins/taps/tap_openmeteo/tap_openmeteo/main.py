@@ -9,6 +9,8 @@ import logging
 from .extractors.openmeteo_extractor import OpenMeteoExtractor
 from .singer import openmeteo_singer
 
+CATALOG_PATH = os.path.join(os.path.dirname(__file__), 'catalog', 'openmeteo_catalog.json')
+
 def do_about():
     about_info = {
         "name": "tap-openmeteo",
@@ -47,30 +49,28 @@ def do_about():
 def do_discover(catalog_path):
     with open(catalog_path, "r", encoding="utf-8") as f:
         catalog = json.load(f)
-    print(json.dumps(catalog, indent=2))
-
+    return catalog
 
 def do_test_request(extractor_instance):
     data = extractor_instance.extract()
     print(json.dumps(data, indent=2))
 
 
-def run_tap(extractor_instance, catalog_path, stream_name):
-    tap_runner = openmeteo_singer.OpenMeteoSingerRunner(extractor_instance, catalog_path, stream_name)
+def run_tap(extractor_instance, catalog, stream_name):
+    tap_runner = openmeteo_singer.OpenMeteoSingerRunner(extractor_instance, catalog, stream_name)
     tap_runner.run()
 
 @click.command()
 @click.option('--config', required=True, help='Config JSON em base64')
-@click.option('--catalog', required=False, help='Caminho para o catalog JSON')
 @click.option('--discover', is_flag=True, help='Imprime o catalog JSON no stdout e sai')
 @click.option('--about', is_flag=True, help='Imprime metadados do projeto em JSON e sai')
 @click.option('--test-request', is_flag=True, help='Testa apenas a request, sem rodar a tap completa')
-def main(config, catalog, discover, about, test_request):
+def main(config, discover, about, test_request):
     logging.basicConfig(level=logging.INFO)
     logging.info("Iniciando a execução da tap_openmeteo...")
 
     # Se não vier, usa o padrão
-    catalog_path = catalog or os.path.join(os.path.dirname(__file__), 'catalog', 'openmeteo_catalog.json')
+    catalog_path = CATALOG_PATH
 
     if config:
         try:
@@ -78,7 +78,6 @@ def main(config, catalog, discover, about, test_request):
             config_dict = json.loads(decoded)
 
             extractor_instance, stream_name = OpenMeteoExtractor.get_extractor(config_dict)
-            logging.info("STREAM NAME: " + stream_name)
         except Exception as e:
             logging.error("Erro ao decodificar config base64:", exc_info=True)
             raise
@@ -90,13 +89,13 @@ def main(config, catalog, discover, about, test_request):
         do_about()
     elif discover:
         logging.info("Executando --discover")
-        do_discover(catalog_path)
+        print(json.dumps(do_discover(catalog_path), indent=2))
     elif test_request:
         logging.info("Executando --test-request")
         do_test_request(extractor_instance)
     else:
         logging.info(f"Executando tap completa usando catalog: {catalog_path}")
-        run_tap(extractor_instance, catalog_path, stream_name)
+        run_tap(extractor_instance, do_discover(catalog_path), stream_name)
 
 if __name__ == '__main__':
     main()

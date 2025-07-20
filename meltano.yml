@@ -12,7 +12,6 @@ plugins:
       pip_url: -e plugins/taps/tap_openmeteo/
       capabilities:
         - state
-        - catalog
         - discover
         - about
         - stream-maps

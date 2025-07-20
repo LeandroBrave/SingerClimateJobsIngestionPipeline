@@ -55,7 +55,7 @@ def escolherStream(tipo):
                 "params": {
                     "latitude": -23.55,
                     "longitude": -46.63,
-                    "start_date": "2023-07-01",
+                    "start_date": "2025-06-15",
                     "end_date": "2025-07-01",
                     "hourly": [
                         "temperature_2m",
