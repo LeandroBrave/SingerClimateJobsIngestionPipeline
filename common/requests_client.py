@@ -1,4 +1,5 @@
 import requests
+import logging
 from urllib.parse import urlencode
 
 #Essa classe é responsável por fazer as requisições e retornar as respostas
@@ -24,7 +25,7 @@ class RequestsClient:
         # Para debug, mostra a URL completa:
         query_string = urlencode(self.params)
         full_url = f"{url}?{query_string}"
-        print(f"Full URL: {full_url}")
+        logging.info(f"Full URL: {full_url}")
 
         response = requests.get(url, params=self.params)
         response.raise_for_status()
