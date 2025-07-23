@@ -56,6 +56,14 @@ Execute:
 python config/tap_openmeteo/gerar_base64_teste.py
 
 Ou simplesmente abra o arquivo e execute usando sua IDE preferida.
+
+OBS:
+Por volta da linha 72, há esse trecho:
+# Converte para string JSON
+config_str = json.dumps(escolherStream('archive')) #Mude aqui entre archive ou forecast, 
+                                                      #para produzir diferentes stups de parametrização
+é aqui que vc define se o seu config do .env recebe uma parametização default do forecast ou archive 
+apenas mudando esse parâmetro                                                      
 ```
 
 ### 7️⃣ Exportar a variável de ambiente
@@ -65,14 +73,20 @@ No bash / Git Bash:
 source .env
 ```
 
-### 8️⃣ Instalar a tap
+### 8️⃣ Instalar a tap e o target
 ```bash
 meltano install extractor tap-openmeteo
+
+depois
+
+meltano install loader target-jsonlS
+
+esses installs são puramente por desencargo. O seu meltano.yml já estárá configurado vindo do repositorio remoto.
 ```
 
-### 9️⃣ Rodar o about para conhecer as funcionalidades
+### 9️⃣ Opções de execução
 ```bash
-meltano invoke tap-openmeteo --config "$CONFIG_B64" --about
+meltano invoke tap-openmeteo --about
 
 🧩 Entendendo as opções de execução
 
@@ -89,21 +103,23 @@ Exibe informações gerais do projeto:
 
 Exemplo:
 
-meltano invoke tap-openmeteo --config "" --about
+meltano invoke tap-openmeteo --about
 
 🔍 --discover
 
 Mostra no terminal o catálogo JSON (schemas e streams) que a tap oferece.
 Útil para explorar rapidamente quais estruturas de dados estão disponíveis.
 
-meltano invoke tap-openmeteo --config "" --discover
+meltano invoke tap-openmeteo --discover
 
 🧪 --test_request
 
 Executa apenas a requisição HTTP, sem transformar os dados no formato Singer.
 Ótimo para debug ou exploração da resposta bruta da API.
 
-meltano invoke tap-openmeteo --config "$CONFIG_B64" --test_request
+meltano invoke tap-openmeteo --config "seu base64" --test_request
+ou simplesmente:
+meltano invoke tap-openmeteo --test_request (para usar o base64 do .env)
 
 ▶️ Execução completa da tap
 
@@ -115,9 +131,15 @@ Executa todo o fluxo:
 
     Emite os registros extraídos no formato Singer
 
-meltano invoke tap-openmeteo --config "$CONFIG_B64" > output/forecast_tap_run.log
+meltano invoke tap-openmeteo --config "seu base64" > output/forecast_tap_run.log
+ou simplesmente
+meltano invoke tap-openmeteo > output/forecast_tap_run.log
 
     Isso gera um arquivo .log com todas as mensagens Singer (schema + records).
+
+É possível executar a tap com o extrator json, com o comando:
+ meltano run tap-openmeteo target-jsonl (usando o config do .env)
+ um json será criado na pasta output
 ```
 
 ✅ Resumo
