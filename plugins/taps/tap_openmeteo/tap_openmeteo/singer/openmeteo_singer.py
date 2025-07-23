@@ -12,7 +12,6 @@ class OpenMeteoSingerRunner:
     def run(self):
         # 1. Extrai payload
         data = self.extractor.extract()
-        logging.info(data)
 
         # 2. Extrai todas as listas do bloco "hourly"
         hourly_data = data["hourly"]
