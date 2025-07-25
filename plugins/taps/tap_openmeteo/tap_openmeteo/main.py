@@ -24,7 +24,11 @@ def do_about():
                 "description": "Executa a tap completa, lendo do catalog e emitindo dados no formato Singer.",
                 "exemplo":{
                     "Rodar apenas a tap": "meltano invoke nome_da_tap --config '$CONFIG_B64' > output/nome_do_arquivo_de_saida.log",
-                    "Rodar a tap e o target": "meltano invoke nome_da_tap --config ''$CONFIG_B64' nome_do_target"
+                    "Ou simplesmente": "meltano invoke nome_da_tap",
+                    "Exemplo":"meltano invoke tap-openmeteo",
+
+                    "Rodar a tap e o target": "meltano run nome_da_tap nome_do_target",
+                    "Exemplo":"meltano run tap-openmeteo jsonl"
                 }
                     
             },
