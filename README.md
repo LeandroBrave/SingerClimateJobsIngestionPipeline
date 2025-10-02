@@ -20,7 +20,7 @@ Cada etapa ficará em um repositório separado para manter a arquitetura limpa e
 ## 📌 Objetivo
 
 Construir um pipeline completo de ingestão e transformação de dados públicos, aplicando boas práticas de engenharia de dados:
-- Ingestão de múltiplas fontes (APIs públicas e arquivos)
+- Ingestão de múltiplas fontes (APIs públicas, banco de dados e arquivos)
 - Armazenamento raw no S3
 - Transformações com dbt no Snowflake
 - Análise do impacto do clima sobre os índices de empregabilidade e desemprego
