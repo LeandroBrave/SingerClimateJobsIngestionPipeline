@@ -19,7 +19,7 @@ plugins:
     - name: config
       value: $CONFIG_B64
     catalog: 
-      plugins/taps/tap_openmeteo/tap_openmeteo/catalog/openmeteo_catalog.json
+      plugins/taps/tap_openmeteo/tap_openmeteo/catalog/catalog.json
   loaders:
   - name: target-jsonl
     variant: andyh1203
@@ -27,3 +27,15 @@ plugins:
     config:
       destination_path: output
       do_timestamp_file: true
+  - name: target-s3
+    variant: crowemi
+    pip_url: git+https://github.com/crowemi/target-s3.git
+    config:
+      append_date_to_filename: true
+      format:
+        format_type: parquet
+      prefix: $TARGET_PREFIX
+      append_date_to_prefix: false
+      append_date_to_filename_grain: microsecond
+      max_batch_size: 100000
+      max_batch_age: 20

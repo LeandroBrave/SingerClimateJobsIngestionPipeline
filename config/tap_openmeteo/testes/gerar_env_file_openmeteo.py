@@ -69,7 +69,7 @@ def escolherStream(tipo):
 
 
 # Converte para string JSON
-config_str = json.dumps(escolherStream('archive')) #Mude aqui entre archive ou forecast, 
+config_str = json.dumps(escolherStream('forecast')) #Mude aqui entre archive ou forecast, 
                                                       #para produzir diferentes stups de parametrização
 
 # Codifica em base64
