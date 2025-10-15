@@ -10,7 +10,8 @@ from .extractors.openmeteo_extractor import OpenMeteoExtractor
 from .singer import openmeteo_singer
 from singer import utils
 
-CATALOG_PATH = os.path.join(os.path.dirname(__file__), 'catalog', 'openmeteo_catalog.json')
+CATALOG_PATH = os.path.join(os.path.dirname(__file__), 'catalog', 'catalog.json')
+logging.info(f"Caminho do catalog.json: {CATALOG_PATH}")
 
 def do_about():
     about_info = {
@@ -28,7 +29,7 @@ def do_about():
                     "Exemplo":"meltano invoke tap-openmeteo",
 
                     "Rodar a tap e o target": "meltano run nome_da_tap nome_do_target",
-                    "Exemplo":"meltano run tap-openmeteo jsonl"
+                    "Exemplo":"meltano run tap-openmeteo target-jsonl"
                 }
                     
             },

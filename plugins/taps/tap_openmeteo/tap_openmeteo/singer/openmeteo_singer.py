@@ -1,6 +1,5 @@
-import json
 from common.singer_emitter import SingerEmitter
-import logging
+from .openmeteo_transform import OpenMeteoTransformer
 
 class OpenMeteoSingerRunner:
     def __init__(self, extractor, catalog, stream_name):
@@ -8,6 +7,7 @@ class OpenMeteoSingerRunner:
         self.catalog = catalog
         self.extractor = extractor
         self.stream_name = stream_name
+        self.transformer = OpenMeteoTransformer(stream=self.stream_name)
 
     def run(self):
         # 1. Extrai payload
@@ -40,6 +40,11 @@ class OpenMeteoSingerRunner:
                 record[var] = value
             records.append(record)
 
-        # 6. Emite schema e records
-        self.emitter.write_schema(self.stream_name, schema, key_properties)
-        self.emitter.write_batch_records(self.stream_name, records)
+        # 6. Validação com o transformer
+        records_transformed = self.transformer.transform({"value": records})
+
+        # 7. Emite schema e records
+        #self.emitter.write_schema(self.stream_name, schema, key_properties)
+        #self.emitter.write_batch_records(self.stream_name, records)
+        self.emitter.write_schema(self.stream_name, self.transformer.schema, key_properties)
+        self.emitter.write_batch_records(self.stream_name, records_transformed)
