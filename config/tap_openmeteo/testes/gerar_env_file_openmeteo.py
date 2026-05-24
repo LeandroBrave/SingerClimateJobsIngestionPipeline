@@ -21,12 +21,12 @@ def salvar_env(base64_str, env_path):
             linhas = f.readlines()
         with open(env_path, "w") as f:
             atualizou = False
-            for l in linhas:
-                if l.startswith("CONFIG_B64="):
+            for line in linhas:
+                if line.startswith("CONFIG_B64="):
                     f.write(linha)
                     atualizou = True
                 else:
-                    f.write(l)
+                    f.write(line)
             if not atualizou:
                 f.write(linha)
     else:

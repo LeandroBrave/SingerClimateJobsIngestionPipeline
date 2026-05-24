@@ -105,3 +105,47 @@ Vamos consolidar e analisar dados climáticos junto com dados de emprego para in
 
 - 🚀 [Deploy e execução (DEPLOY.md)](docs/DEPLOY.md)  
   Como preparar o ambiente, instalar dependências e executar localmente.
+
+---
+
+## 🛠️ Fluxo de desenvolvimento
+
+Este repositório usa `pre-commit` localmente e GitHub Actions para CI.
+
+### Local
+
+1. Crie um ambiente Python e instale dependências:
+
+```bash
+python -m pip install -r requirements.txt
+python -m pip install -r requirements-dev.txt
+```
+
+2. Ative o hook do `pre-commit`:
+
+```bash
+pre-commit install
+```
+
+3. Antes de commitar, o `pre-commit` rodará automaticamente e bloqueará commits com problemas de formatação ou lint.
+
+### CI no GitHub
+
+- Um workflow em `.github/workflows/python-ci.yml` roda em `push` e `pull_request` para `main` e `dev`.
+- Ele instala dependências, roda `pre-commit` em todos os arquivos e faz validação de sintaxe Python.
+
+### Comandos úteis
+
+```bash
+git checkout dev
+# editar código
+git add .
+git commit -m "feat: ..."
+git push origin dev
+```
+
+Se você ainda não tiver criado a branch `dev` localmente, use:
+
+```bash
+git checkout -b dev origin/main
+```

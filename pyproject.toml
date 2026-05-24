@@ -1,0 +1,26 @@
+[tool.black]
+line-length = 88
+target-version = ["py311"]
+include = '\.pyi?$'
+exclude = '''
+/(
+    \.
+  | build
+  | dist
+  | .meltano
+  | .git
+  | __pycache__
+  | output
+  | plugins/.*/\.venv
+)
+'''
+
+[tool.isort]
+profile = "black"
+known_first_party = ["common", "plugins"]
+line_length = 88
+
+[tool.flake8]
+max-line-length = 88
+extend-ignore = ["E203", "W503", "E501"]
+exclude = [".git", "__pycache__", ".meltano", "output"]
