@@ -19,11 +19,9 @@ class OpenMeteoTransformer():
         Carrega o schema do catalog.json correspondente ao stream.
         """
         current_dir = os.path.dirname(os.path.abspath(__file__))
-        catalog_path = os.path.abspath(
-            os.path.join(current_dir, "..", "catalog", "catalog.json")
-        )
+        catalog_path = os.path.abspath(os.path.join(current_dir, "..", "catalog", "catalog.json"))
 
-        LOGGER.debug("catalog_path=%s", catalog_path)
+        LOGGER.debug(f"[OpenMeteoTransformer] catalog_path={catalog_path}")
 
         if not os.path.exists(catalog_path):
             raise FileNotFoundError(f"catalog.json não encontrado: {catalog_path}")

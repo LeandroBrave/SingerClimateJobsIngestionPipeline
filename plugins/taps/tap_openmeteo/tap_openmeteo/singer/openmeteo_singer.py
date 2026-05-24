@@ -19,10 +19,7 @@ class OpenMeteoSingerRunner:
         variables = [k for k in hourly_data.keys() if k != "time"]
 
         # 3. Extrai schema e key_properties do catalog
-        stream_info = next(
-            s for s in self.catalog["streams"]
-            if s["stream"] == self.stream_name
-        )
+            stream_info = next(s for s in self.catalog["streams"] if s["stream"] == self.stream_name)
         schema = stream_info["schema"]
         key_properties = stream_info.get("key_properties", [])
 
