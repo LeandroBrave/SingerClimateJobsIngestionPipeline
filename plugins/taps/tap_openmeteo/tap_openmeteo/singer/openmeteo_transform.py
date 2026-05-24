@@ -19,9 +19,11 @@ class OpenMeteoTransformer():
         Carrega o schema do catalog.json correspondente ao stream.
         """
         current_dir = os.path.dirname(os.path.abspath(__file__))
-        catalog_path = os.path.abspath(os.path.join(current_dir, "..", "catalog", "catalog.json"))
+        catalog_path = os.path.abspath(
+            os.path.join(current_dir, "..", "catalog", "catalog.json")
+        )
 
-        LOGGER.debug(f"[HCMTransformer] catalog_path={catalog_path}")
+        LOGGER.debug("catalog_path=%s", catalog_path)
 
         if not os.path.exists(catalog_path):
             raise FileNotFoundError(f"catalog.json não encontrado: {catalog_path}")
@@ -41,11 +43,11 @@ class OpenMeteoTransformer():
         records = []
 
         with Transformer() as transformer:
-            for r in data['value']:
+            for r in data["value"]:
                 try:
                     records.append(transformer.transform(r, self.schema))
-                except Exception as ex:
-                    LOGGER.debug(f"[OpenMeteoTransformer]  {r=}")
+                except Exception:
+                    LOGGER.debug("failed record: %s", r, exc_info=True)
                     raise
         
         return records

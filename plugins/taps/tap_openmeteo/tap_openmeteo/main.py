@@ -109,8 +109,8 @@ def main():
             config_dict = json.loads(decoded)
 
             extractor_instance, stream_name = OpenMeteoExtractor.get_extractor(config_dict)
-        except Exception as e:
-            logging.error("Erro ao decodificar config base64:", exc_info=True)
+        except Exception:
+            logging.error("Erro ao decodificar config base64", exc_info=True)
             raise
 
     if known_args.about:
