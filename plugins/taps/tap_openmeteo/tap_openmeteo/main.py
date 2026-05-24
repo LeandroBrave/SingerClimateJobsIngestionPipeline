@@ -1,14 +1,16 @@
 import sys
 import os
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../../../..')))
 
+import argparse
 import base64
 import json
 import logging
-import argparse
+
 from .extractors.openmeteo_extractor import OpenMeteoExtractor
 from .singer import openmeteo_singer
 from singer import utils
+
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../../../..')))
 
 CATALOG_PATH = os.path.join(os.path.dirname(__file__), 'catalog', 'catalog.json')
 logging.info(f"Caminho do catalog.json: {CATALOG_PATH}")
@@ -26,10 +28,10 @@ def do_about():
                 "exemplo":{
                     "Rodar apenas a tap": "meltano invoke nome_da_tap --config '$CONFIG_B64' > output/nome_do_arquivo_de_saida.log",
                     "Ou simplesmente": "meltano invoke nome_da_tap",
-                    "Exemplo":"meltano invoke tap-openmeteo",
+                    "Exemplo1":"meltano invoke tap-openmeteo",
 
                     "Rodar a tap e o target": "meltano run nome_da_tap nome_do_target",
-                    "Exemplo":"meltano run tap-openmeteo target-jsonl"
+                    "Exemplo2":"meltano run tap-openmeteo target-jsonl"
                 }
                     
             },
